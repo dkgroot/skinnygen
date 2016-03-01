@@ -1,30 +1,23 @@
-from setuptools import setup
+#!/usr/bin/env python
 
-import os, glob
-
-def read(fname):
-    return open(fname).read()
-
-MODULES = [os.path.splitext(fn)[0] for fn in glob.glob('*.py')]
-PACKAGES = [os.path.dirname(fn) for fn in glob.glob('*/__init__.py')]
+from setuptools import setup, find_packages
 
 
 setup(
-    name = "skinnygen",
-    version = "0.0.1",
-    author = "Marek Wiewiorski",
-    author_email = "mwicat@gmail.com",
-    description = ("Skinny protocol traffic generator"),
-    license = "GPLv3",
-    packages=PACKAGES,
-    py_modules=MODULES,
-    install_requires = ['argparse', 'argh'],
-    long_description=read('README'),
-    entry_points = {
+    name="skinnygen",
+    version="0.5.0",
+    author="Marek Wiewiorski",
+    author_email="mwicat@gmail.com",
+    description=("Skinny protocol traffic generator"),
+    license="GPLv3",
+    packages=find_packages(),
+    install_requires=[
+        'sccp',
+        'argh==0.24.1'
+    ],
+    entry_points={
         'console_scripts': [
-            'skinnygen = skinnygen:main',
+            'skinnygen=skinnygen.main:main',
             ]
-        },
-
-
+    }
 )
